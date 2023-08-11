@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+        
+
+<div class="w-full h-screen flex flex-row justify-center items-center">
+    <div>
+
+    <form class="w-full max-w-lg bg-white p-10 rounded-lg" method="POST" action="/confirm"> {% csrf_token %}
+        
+
+      </form>
+
+    </div>
+
+    <div class="bg-gray-200 w-full max-w-lg rounded-lg">
+        <h1 class="text-xl mb-6">User: {{usr.username}}</h1>    
+        <h1 class="text-2xl mb-12">Started: {{usr.started}}</h1>
+        <h1 class="text-xl mb-6">Price: {{usr.price}}</h1>
+        <h1 class="text-xl mb-6">Quality: {{sub.video_quality}}</h1>
+        <h1 class="text-xl mb-6">Active Screens: {{sub.active_screens}}</h1>
+        <h1 class="text-xl mb-6">Resolution: {{sub.resolution}}</h1>
+        {% if usr.plan_status == True %}
+            <h1 class="text-xl mb-6">Status: Active</h1>
+        {% else %}
+            <h1 class="text-xl mb-6">Status: Cancelled</h1>
+        {% endif %}
+        
+        {% if usr.plan_status == True %}
+
+        <form method="POST" action="/profile">{% csrf_token%}
+        <button class="bg-red-800 p-6" type="submit"> Cancel</button>
+        </form>
+        {% endif %}
+
+            
+            
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+

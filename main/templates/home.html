@@ -1,0 +1,188 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<script>
+   
+    function store_plan(plan){
+        data = localStorage.setItem("plan", plan);
+        document.getElementById("set_plan").value = localStorage.getItem("plan");
+        console.log(document.getElementById("set_plan").value)
+    }
+
+    function set_plan_price(period){
+        console.log(period)
+        localStorage.setItem("bill",period)
+  
+        document.getElementById("set_bill").value = localStorage.getItem("bill");
+        console.log(document.getElementById("set_bill").value)
+    }
+
+
+    function monthly(){
+        set_plan_price("monthly")
+        document.getElementById("a").innerHTML = '100 INR';
+        document.getElementById("b").innerHTML = '200 INR';
+        document.getElementById("c").innerHTML = '500 INR';
+        document.getElementById("d").innerHTML = '700 INR';
+        document.getElementById("mnt_chg").innerHTML = 'Monthly Prices';
+        console.log("monthly");
+    }
+
+
+
+    function yearly(){
+        set_plan_price("yearly")
+        document.getElementById("a").innerHTML = '1000 INR';
+        document.getElementById("b").innerHTML = '2000 INR';
+        document.getElementById("c").innerHTML = '5000 INR';
+        document.getElementById("d").innerHTML = "7000 INR";
+        document.getElementById("mnt_chg").innerHTML = 'Yearly Prices';
+        console.log("yearly");
+    }
+
+   
+</script> 
+
+
+
+<div class="w-full h-screen flex flex-col justify-center items-center bg-white">
+
+<table class="table-fixed">
+    
+    <thead>
+      <tr>
+        <th>
+            <div class="flex flex-row width-20% bg-blue-800 p-6 gap-4 rounded-3xl">
+                <div class=" p-4 rounded-3xl hover:bg-white hover:text-blue-950" onclick="monthly()">
+                <p>Monthly</p>
+                </div>
+                <div class=" p-4 rounded-3xl hover:bg-white hover:text-blue-950" onclick="yearly()">
+                <p>Yearly</p>
+                </div>
+
+            </div>
+
+                
+        </th>
+        <th>
+            <div class="bg-blue-800 opacity-70  text-white p-10 hover:bg-blue-950 hover:opacity-100" onclick="store_plan('Basic');">
+            Basic
+        </a></th>
+        <th>
+            <div class="bg-blue-800 opacity-70  text-white p-10 hover:bg-blue-950 hover:opacity-100" onclick="store_plan('Standard');">
+            Standard
+            </div>
+        </th>
+
+        <th>
+            <div class="bg-blue-800 opacity-70  text-white p-10 hover:bg-blue-950 hover:opacity-100" onclick="store_plan('Premium');">
+            Premium
+            </div>
+
+        </th>
+        <th>
+            <div class="bg-blue-800 opacity-70  text-white p-10 hover:bg-blue-950 hover:opacity-100" onclick="store_plan('Regular');">
+            Regular
+            </div>
+        </th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr  class="table-auto">
+        <td id="mnt_chg">Monthly Price</td>
+        <td id="a">100 INR</td>
+        <td id="b" >200 INR</td>
+        <td id="c" >500 INR</td>
+        <td id="d" >700 INR</td>
+      
+        
+      </tr>
+      <tr>
+        <td>Video quality</td>
+        
+        <td>Good</td>
+        <td>Good</td>
+        <td>Better</td>
+        <td>Best</td>
+      </tr>
+
+      <tr>
+
+        <td>Resolution</td>
+        <td>480p</td>
+        <td>720p</td>
+        <td>1080p</td>
+        <td>4K+HDR</td>
+      </tr>
+
+      <tr>
+
+        <td>Devices</td>
+        
+        <td>Phone</td>
+        <td>Phone</td>
+        <td>Phone</td>
+        <td>Phone</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Tablet</td>
+        <td>Tablet</td>
+        <td>Tablet</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Computer</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>TV</td>
+      </tr>
+
+
+      <tr>
+        <td>No of Screens</td>
+        <td>1</td>
+        <td>3</td>
+        <td>5</td>
+        <td>10</td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+  <form method="POST" action="/payment"> {% csrf_token %}
+    <input type="hidden" id="set_plan" name="plan_details" value="">
+    <input type="hidden" id="set_bill" name="bill_cycle" value="">
+    <button class="bg-blue-950 p-4 rounded-md text-white m-5">Next</button>
+  </form>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

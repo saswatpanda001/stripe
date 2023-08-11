@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="w-full h-screen flex flex-row justify-center items-center">
+    <div>
+
+    <form class="w-full max-w-lg bg-white p-10 rounded-lg" method="POST" action="/confirm"> {% csrf_token %}
+        
+    </form>
+
+    </div>
+
+    {% comment %} <div class="bg-gray-200 w-full max-w-lg rounded-lg">
+        <h1 class="text-xl mb-6">aa{{status}}</h1>    
+        <h1 class="text-2xl mb-12">{{data.username}}</h1>
+        <h1 class="text-xl mb-6">{{dev}} </h1>
+        <h1 class="text-xl mb-6">{{pln.name}}</h1>
+            
+            
+
+
+
+    </div> {% endcomment %}
+
+    <div class="bg-gray-200 w-full max-w-lg p-2 h-90">
+
+            
+
+        <h1 class="text-3xl mb-12">Confirmation</h1>
+        <div class="flex flex-row justify-between">
+        <h1 class="text-2xl mb-6">Status</h1>
+        <h1 class="text-xl mb-6">{{status}}</h1>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <h1 class="text-2xl mb-6">Username</h1>
+          <h1 class="text-xl mb-6">{{data.username}}</h1>
+          </div>
+
+          <div class="flex flex-row justify-between">
+            <h1 class="text-2xl mb-6">Devices</h1>
+            <h1 class="text-xl mb-6">{{dev}}</h1>
+          </div>
+
+
+
+          <div class="flex flex-row justify-between">
+            <h1 class="text-2xl mb-6">Plan</h1>
+            <h1 class="text-xl mb-6">{{pln.name}}</h1>
+          </div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+
