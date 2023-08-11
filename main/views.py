@@ -15,6 +15,19 @@ from main.models import Plans,Device,UserSubscription
 User = get_user_model()
 
 
+@login_required
+def login(request):  
+    return render(request,"index.html")
+
+
+
+
+@login_required
+def register(request):  
+    return render(request,"Register.html")
+
+
+
 
 @login_required
 def home(request):  
